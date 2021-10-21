@@ -1,0 +1,55 @@
+
+    <div>
+        <table dtOptions="dtOptions" datatable id="listagem-usuarios" class="table table-striped" *ngIf="usuarios && usuarios.length > 0">
+            <caption>Mensagens Recebidas</caption>
+            <thead>
+              <tr>
+                <th scope="col" class="text-left align-middle">Nome</th>
+                <th scope="col" class="text-left align-middle">Sobrenome</th>
+                <th scope="col" class="text-left align-middle" style="width: 25%;">Email</th>
+                <th scope="col" class="text-center align-middle" style="width: 15%;">Data de Nascimento</th>
+                <th scope="col" class="text-center align-middle" style="width: 15%;">Escolaridade</th>
+                <th scope="col" class="text-center align-middle" style="width: 10%;">Ações</th>
+              </tr>
+            </thead>
+      
+            <tbody *ngIf="usuarios">
+              <tr role="row" class="even" *ngFor="let usuario of usuarios; index as i">
+                <!-- Nome -->
+                <td class="text-left">
+                    {{usuario.nome}}
+                </td>
+                
+                <!-- Sobrenome -->
+                <td class="text-left">
+                    {{usuario.sobrenome}}
+                </td>
+                
+                <!-- Email -->
+                <td class="text-left">
+                    {{usuario.email}}
+                </td>
+                
+                <!-- Data Nascimento -->
+                <td class="text-center">
+                    {{usuario.dataNascimento | date: 'dd/MM/yyyy'}}
+                </td>
+                
+                <!-- Escolaridade -->
+                <td class="text-center">
+                    {{getEscolaridade(usuario.escolaridade)}}
+                </td>
+      
+                <!-- Ações -->
+                <td class="text-center">
+                    <a class="badge badge-warning" routerLink="/usuarios/{{ usuario.id }}">
+                        Editar
+                    </a>
+                    <a class="badge badge-warning" style="cursor:pointer" (click)="deletarUsuario(usuario)">
+                        Deletar
+                    </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
